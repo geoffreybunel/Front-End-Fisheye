@@ -4,28 +4,11 @@ function photographerTemplate(data) {
     const picture = `assets/photographers/Photographers ID Photos/${portrait}`;
 
     function getUserCardDOM() {
-        // const article = document.querySelector( 'article' );
-        // article.setAttribute("id", id);
-
-        // const img = document.getElementById( 'photographer__img' );
-        // img.setAttribute("src", picture);
-        
-        // const h2 = document.querySelector( 'h2' );
-        // h2.textContent = name;
-
-        // const localisation = document.querySelector( '.photographer__localisation' );
-        // localisation.textContent = city + ", " + country;
-
-        // const quote = document.querySelector( '.photographer__quote' );
-        // quote.textContent = tagline;
-
-        // const pricing = document.querySelector( '.photographer__pricing' );
-        // pricing.textContent = price + "€/jour";
-
-        //HTML IN JS
+        // Create the photographers cards
         const article = document.createElement( 'article' );
         article.setAttribute("id", id);
 
+        // Cards's HTML code
         const articleContent = `
             <a href="#">
                 <img src="${picture}" alt="${name}">
