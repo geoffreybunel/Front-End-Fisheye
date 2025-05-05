@@ -6,6 +6,10 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
 }
 
 .contact_button {
@@ -19,6 +23,13 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.profile_picture {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .modal {
