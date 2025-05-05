@@ -33,7 +33,7 @@ function photographerPageTemplate(data) {
 
         // Photographer Title's HTML code
         const photographTitleInfoContent = `
-            <h1>${name}</h1>
+            <h1 class="photographer__h1">${name}</h1>
             <p class="photographer__localisation">${city}, ${country}</p>
             <p class="photographer__quote">${tagline}</p>
         `;
@@ -61,11 +61,11 @@ function photographerPageTemplate(data) {
 async function displayData(photographers) {
     const photographerId = getPhotographerId();
     const photographerHeader = document.querySelector(".photograph-header");
+    const contactButton = photographerHeader.querySelector(".contact_button");
 
     const photographer = photographers.find(photographer => photographer.id === photographerId);
     const photographerPageModel = photographerPageTemplate(photographer);
 
-    const contactButton = photographerHeader.querySelector(".contact_button");
     photographerHeader.insertBefore(photographerPageModel.getUserCardDOM(), contactButton);
     photographerHeader.append(photographerPageModel.getPhotographerProfilePicture());
 }

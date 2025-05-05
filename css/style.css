@@ -56,20 +56,20 @@ h1 {
     object-fit: cover;
 }
 
-.photographer__localisation {
+.cards__localisation {
     color: #901C1C;
     font-size: 13px;
     font-weight: 400;
     margin: 0 0 5px 0;
 }
 
-.photographer__quote {
+.cards__quote {
     font-size: 10px;
     font-weight: 400;
     margin: 0 0 5px 0;
 }
 
-.photographer__pricing {
+.cards__pricing {
     color: #757575;
     font-size: 9px;
     font-weight: 400;

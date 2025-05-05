@@ -14,9 +14,9 @@ function photographerTemplate(data) {
                 <img src="${picture}" alt="${name}">
                 <h2>${name}</h2>
             </a>
-            <p class="photographer__localisation">${city}, ${country}</p>
-            <p class="photographer__quote">${tagline}</p>
-            <p class="photographer__pricing">${price}€/jour</p>
+            <p class="cards__localisation">${city}, ${country}</p>
+            <p class="cards__quote">${tagline}</p>
+            <p class="cards__pricing">${price}€/jour</p>
         `;
 
         article.innerHTML = articleContent;
