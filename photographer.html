@@ -13,11 +13,24 @@
         <img src="assets/images/logo.png" class="logo" />
       </a>
     </header>
+
     <main id="main">
-      <div class="photograph-header">
+      <section class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
+      </section>
+
+      <section class="filter__container">
+        <label for="filter">Trier par</label>
+        <select name="filter" id="filter">
+          <option value="Popularité">Popularité</option>
+          <option value="Date">Date</option>
+          <option value="Titre">Titre</option>
+        </select>
+      </section>
+
+      <section class="photographer_section"></section>
     </main>
+
     <div id="contact_modal">
 			<div class="modal">
 				<header>

@@ -59,15 +59,16 @@ function photographerPageTemplate(data) {
 
 // Function to display Photographers infos
 async function displayData(photographers) {
-    const photographerId = getPhotographerId();
     const photographerHeader = document.querySelector(".photograph-header");
     const contactButton = photographerHeader.querySelector(".contact_button");
 
+    const photographerId = getPhotographerId();
     const photographer = photographers.find(photographer => photographer.id === photographerId);
-    const photographerPageModel = photographerPageTemplate(photographer);
+    
+    const photographerModel = photographerPageTemplate(photographer);
 
-    photographerHeader.insertBefore(photographerPageModel.getUserCardDOM(), contactButton);
-    photographerHeader.append(photographerPageModel.getPhotographerProfilePicture());
+    photographerHeader.insertBefore(photographerModel.getUserCardDOM(), contactButton);
+    photographerHeader.append(photographerModel.getPhotographerProfilePicture());
 }
 
 // Function to initialize the code
