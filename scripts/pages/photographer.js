@@ -37,6 +37,7 @@ function photographerPageTemplate(data) {
             <p class="photographer__localisation">${city}, ${country}</p>
             <p class="photographer__quote">${tagline}</p>
         `;
+
         photographTitleInfo.innerHTML = photographTitleInfoContent;
         return photographTitleInfo;
     }
@@ -54,28 +55,73 @@ function photographerPageTemplate(data) {
         return photographImg;
     }
 
-    return { name, picture, getUserCardDOM, getPhotographerProfilePicture }
+    return { getUserCardDOM, getPhotographerProfilePicture }
+}
+
+// Function to create the page template
+function mediaTemplate(data, photographerName) {
+    const { title, image } = data;
+
+    function getMediaCardDOM() {
+        // Create the photographer Title informations
+        const article = document.createElement( 'article' );
+
+        let firstName = photographerName.split(" ")[0];
+        let mediaHTML = `<img src="../../assets/photographers/${firstName}/${image}" alt="${title}"`;
+
+        const articleContent = `
+            <div>
+                ${mediaHTML}
+                <p>${title}</p>
+            </div>
+        `;
+
+        article.innerHTML = articleContent;
+        return article;
+    }
+
+    return { getMediaCardDOM };
+}
+
+// Function to display Photographers's medias
+async function displayMedia(media, photographerName) {
+    const photographerSection = document.querySelector(".photographer_section");
+    
+    // Create and append each media card
+    media.forEach(mediaItem => {
+        const mediaModel = mediaTemplate(mediaItem, photographerName);
+        photographerSection.appendChild(mediaModel.getMediaCardDOM());
+    });
+
 }
 
 // Function to display Photographers infos
-async function displayData(photographers) {
+async function displayData(photographers, media) {
     const photographerHeader = document.querySelector(".photograph-header");
     const contactButton = photographerHeader.querySelector(".contact_button");
 
     const photographerId = getPhotographerId();
     const photographer = photographers.find(photographer => photographer.id === photographerId);
+
+    // Filter media for this photographer
+    const photographerMedia = media.filter(item => item.photographerId === photographerId);
     
     const photographerModel = photographerPageTemplate(photographer);
 
     photographerHeader.insertBefore(photographerModel.getUserCardDOM(), contactButton);
     photographerHeader.append(photographerModel.getPhotographerProfilePicture());
+
+    // Display Medias
+    displayMedia(photographerMedia, photographer.name)
 }
+
+
 
 // Function to initialize the code
 async function init() {
     // Get data from photographers
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
+    const { photographers, media } = await getPhotographers();
+    displayData(photographers, media);
 }
 
 init();
