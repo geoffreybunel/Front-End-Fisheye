@@ -60,6 +60,27 @@
     display: flex;
 }
 
+/* Medias */
+.photographer_medias {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+    margin: 0 100px;
+}
+
+.photographer_medias article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photographer_medias img {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
 /* Modal */
 .modal {
     border-radius: 5px;
