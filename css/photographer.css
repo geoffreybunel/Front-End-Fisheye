@@ -81,6 +81,46 @@
     border-radius: 5px;
 }
 
+.photographer_medias video {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.medias__infos {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #901C1C;
+    font-size: 24px;
+    height: 50px;
+}
+
+/* Tarifs */
+.tarifs__container {
+    position: fixed;
+    bottom: 0%;
+    right: 50px;
+    display: flex;
+    justify-content: space-around;
+    height: 65px;
+    background-color: #DB8876;
+    border-radius: 5px 5px 0 0;
+}
+
+.tarifs__container  div{
+    padding: 0 30px;
+    
+}
+
+.tarifs__container p {
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
 /* Modal */
 .modal {
     border-radius: 5px;

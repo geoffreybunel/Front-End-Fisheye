@@ -21,8 +21,8 @@ function getPhotographerId() {
     return parseInt(urlParams.get("id"));
 }
 
-function photographerInfos(data) {
-    const { name, city, country, tagline } = data;
+function photographerInfos(dataPhotographer) {
+    const { name, city, country, tagline } = dataPhotographer;
 
     const photographerTitleInfos = document.createElement("div");
 
@@ -34,8 +34,8 @@ function photographerInfos(data) {
     return photographerTitleInfos;
 }
 
-function photographerProfilePicture(data) {
-    const { portrait, name } = data;
+function photographerProfilePicture(dataPhotographer) {
+    const { portrait, name } = dataPhotographer;
 
     const photographerProfilePicture = document.createElement("div");
 
@@ -45,19 +45,42 @@ function photographerProfilePicture(data) {
     return photographerProfilePicture;
 }
 
+function photographerTarifs(dataPhotographer) {
+    const { price } = dataPhotographer;
+
+    const photographerTarifsContainer = document.querySelector(".tarifs");
+
+    photographerTarifsContainer.innerHTML = `${price}€ / jour`;
+}
+
 function mediasFactory(media, photographerName) {
-    const { title, image, video } = media;
+    const { title, image, video, likes } = media;
     const photographerMediasContent = document.createElement("article");
 
     if (image) {
         photographerMediasContent.innerHTML = `
             <img src="../../assets/photographers/${photographerName}/${image}" alt="${title}">
-            <p>${title}</p>
+            <div class="medias__infos">
+                <p>${title}</p>
+                <div>
+                    <span>${likes}</span>
+                    <i class="fas fa-heart"></i>
+                </div>     
+            </div>
         `;
     } else if (video) {
         photographerMediasContent.innerHTML =`
-            <img src="../../assets/photographers/${photographerName}/${video}" alt="${title}">
-            <p>${title}</p>
+            <video width="350" height="300">
+                <source src="../../assets/photographers/${photographerName}/${video}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="medias__infos">
+                <p>${title}</p>
+                <div>
+                    <span>${likes}</span>
+                    <i class="fas fa-heart"></i>
+                </div>     
+            </div>
         `;
     }
 
@@ -84,6 +107,8 @@ function displayData(photographers) {
 
     photographerHeader.prepend(photographerInfosModel);
     photographerHeader.append(photographerProfilePictureModel);
+
+    photographerTarifs(photographer);
 }
 
 async function init() {
