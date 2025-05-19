@@ -41,16 +41,30 @@
       </div>
     </main>
 
-    <div id="contact_modal" aria-hidden="true" role=”dialog”>
+    <div class="contact_modal" role=”dialog” aria-describedby="modalTitle">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <div class="modal_header_title">
+            <h2 class="modal_title">Contactez-moi</h2>
+          </div>
+          <img src="assets/icons/close.svg" class="modal_close_button" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="fname">Prénom</label>
+						<input type="text" id="fname" name="fname"/>
+					</div>
+          <div>
+						<label for="lname">Nom</label>
+						<input type="text" id="lname" name="lname"/>
+					</div>
+          <div>
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email"/>
+					</div>
+          <div>
+						<label for="fname">Votre message</label>
+						<textarea id="fname" name="fname" rows="10" cols="85"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

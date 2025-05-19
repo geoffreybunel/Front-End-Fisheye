@@ -53,6 +53,15 @@ function photographerTarifs(dataPhotographer) {
     photographerTarifsContainer.innerHTML = `${price}€ / jour`;
 }
 
+function modalPhotographerName(dataPhotographer) {
+    const { name } = dataPhotographer;
+
+    const modalNameSubTitle = document.createElement("h2");
+
+    modalNameSubTitle.innerHTML = `${name}`;
+    return modalNameSubTitle;
+}
+
 function mediasFactory(media, photographerName) {
     const { title, image, video, likes } = media;
     const photographerMediasContent = document.createElement("article");
@@ -109,6 +118,12 @@ function displayData(photographers) {
     photographerHeader.append(photographerProfilePictureModel);
 
     photographerTarifs(photographer);
+
+    const modalHeader = document.querySelector(".modal_header_title");
+
+    const photographerName = modalPhotographerName(photographer);
+
+    modalHeader.append(photographerName);
 }
 
 async function init() {
