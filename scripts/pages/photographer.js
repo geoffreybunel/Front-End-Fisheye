@@ -1,3 +1,6 @@
+let mediasFilteredByPhotographer;
+let photographerName = "";
+
 // Use the getPhotographers function to import JSON on this webpage 
 async function getPhotographers() {
     // Get data from Json file
@@ -21,6 +24,7 @@ function getPhotographerId() {
     return parseInt(urlParams.get("id"));
 }
 
+// Get the photographer informations
 function photographerInfos(dataPhotographer) {
     const { name, city, country, tagline } = dataPhotographer;
 
@@ -34,6 +38,7 @@ function photographerInfos(dataPhotographer) {
     return photographerTitleInfos;
 }
 
+// Get the photographer Profile Picture
 function photographerProfilePicture(dataPhotographer) {
     const { portrait, name } = dataPhotographer;
 
@@ -45,14 +50,33 @@ function photographerProfilePicture(dataPhotographer) {
     return photographerProfilePicture;
 }
 
+// Get the photographer total number of likes
+function photographerLikes(media) {
+    let sumLikes = 0;
+
+    media.forEach(m => {
+        const { likes } = m;
+        sumLikes += likes;
+      })
+
+    const photographerLikesContainer = document.querySelector(".like_counter");
+    photographerLikesContainer.innerHTML = `${sumLikes} <i class="fas fa-heart"></i>`;
+
+    return photographerLikesContainer;
+}
+
+// Get the photographer price
 function photographerTarifs(dataPhotographer) {
     const { price } = dataPhotographer;
 
     const photographerTarifsContainer = document.querySelector(".tarifs");
 
     photographerTarifsContainer.innerHTML = `${price}€ / jour`;
+
+    return photographerTarifsContainer;
 }
 
+// Get the photographer name
 function modalPhotographerName(dataPhotographer) {
     const { name } = dataPhotographer;
 
@@ -62,6 +86,7 @@ function modalPhotographerName(dataPhotographer) {
     return modalNameSubTitle;
 }
 
+// Get the Medias
 function mediasFactory(media, photographerName) {
     const { title, image, video, likes } = media;
     const photographerMediasContent = document.createElement("article");
@@ -96,6 +121,7 @@ function mediasFactory(media, photographerName) {
     return photographerMediasContent;
 }
 
+// Display medias
 function displayMedias(media, photographerName) {
     const photographerMediasContainer = document.querySelector(".photographer_medias");
 
@@ -103,8 +129,11 @@ function displayMedias(media, photographerName) {
         const mediaModel = mediasFactory(mediaItem, photographerName);
         photographerMediasContainer.append(mediaModel);
     });
+
+    photographerLikes(media);
 }
 
+// Display data
 function displayData(photographers) {
     const photographerHeader = document.querySelector(".photograph-header");
 
@@ -126,18 +155,78 @@ function displayData(photographers) {
     modalHeader.append(photographerName);
 }
 
+// Filter the medias by Title, Date or Popularity
+function mediasFilter(selectedFilter) {
+    let sortedMedias = [...mediasFilteredByPhotographer];
+
+    if (selectedFilter === "Titre") {
+        sortedMedias.sort(function (a, b) {
+            if (a.title < b.title) {
+                return -1;
+              }
+              if (a.title > b.title) {
+                return 1;
+              }
+              return 0;
+        });
+
+    } else if (selectedFilter === "Date") {
+        sortedMedias.sort(function (a, b) {
+            if (a.date < b.date) {
+                return -1;
+              }
+              if (a.date > b.date) {
+                return 1;
+              }
+              return 0;
+        });
+
+    } else if (selectedFilter === "Popularité") {
+        sortedMedias.sort(function (a, b) {
+            if (a.likes < b.likes) {
+                return 1;
+              }
+              if (a.likes > b.likes) {
+                return -1;
+              }
+              return 0;
+        });
+    }
+
+    const photographerMediasContainer = document.querySelector(".photographer_medias");
+    photographerMediasContainer.innerHTML = ``;
+
+    displayMedias(sortedMedias, photographerName);
+
+    return sortedMedias;
+}
+
+// Event for when we change the filter, we call the mediasFilter function
+const filter = document.getElementById("filter");
+filter.addEventListener("change", (event) => {
+    const selectedFilter = event.target.value;
+
+    mediasFilter(selectedFilter);
+})
+
+
+
+// Init
 async function init() {
     // Get data from photographers
     const { photographers, media } = await getPhotographers();
     const photographerId = getPhotographerId();
 
     const photographer = photographers.find(p => p.id === photographerId);
+    photographerName = photographer.name;
 
     displayData(photographers);
 
     const photographerMedias = media.filter(m => m.photographerId === photographerId);
+    mediasFilteredByPhotographer = [...photographerMedias];
+
     
-    displayMedias(photographerMedias, photographer.name);
+    displayMedias(photographerMedias, photographerName);
 }
 
 init();

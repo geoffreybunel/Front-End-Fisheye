@@ -56,6 +56,25 @@
     display: flex;
 }
 
+.filter__label {
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.filter {
+    background-color: #901C1C;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 5px;
+}
+
+.filter option {
+    background-color: yellow;
+    color: white;
+    padding: 20px;
+}
+
 /* Medias */
 .photographer_medias {
     display: grid;
