@@ -115,6 +115,10 @@
     height: 50px;
 }
 
+.liked {
+    color : #D3573C;
+}
+
 /* Tarifs */
 .tarifs__container {
     position: fixed;

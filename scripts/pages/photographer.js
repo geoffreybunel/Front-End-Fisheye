@@ -55,14 +55,13 @@ function photographerLikes(media) {
     let sumLikes = 0;
 
     media.forEach(m => {
-        const { likes } = m;
-        sumLikes += likes;
+        sumLikes += m.likes;
       })
 
     const photographerLikesContainer = document.querySelector(".like_counter");
     photographerLikesContainer.innerHTML = `${sumLikes} <i class="fas fa-heart"></i>`;
 
-    return photographerLikesContainer;
+    return sumLikes;
 }
 
 // Get the photographer price
@@ -96,9 +95,9 @@ function mediasFactory(media, photographerName) {
             <img src="../../assets/photographers/${photographerName}/${image}" alt="${title}">
             <div class="medias__infos">
                 <p>${title}</p>
-                <div>
-                    <span>${likes}</span>
-                    <i class="fas fa-heart"></i>
+                <div class="nb_likes">
+                    <span class="media_likes">${likes}</span>
+                    <i class="fas fa-heart like_icon"></i>
                 </div>     
             </div>
         `;
@@ -110,20 +109,55 @@ function mediasFactory(media, photographerName) {
             </video>
             <div class="medias__infos">
                 <p>${title}</p>
-                <div>
-                    <span>${likes}</span>
-                    <i class="fas fa-heart"></i>
+                <div class="nb_likes">
+                    <span class="media_likes">${likes}</span>
+                    <i class="fas fa-heart like_icon"></i>
                 </div>     
             </div>
         `;
     }
 
+    const numberLikes = photographerMediasContent.querySelector(".nb_likes");
+    const mediaLikes = photographerMediasContent.querySelector(".media_likes");
+    const likeIcon = photographerMediasContent.querySelector(".like_icon");
+
+    if (likeIcon && numberLikes) {
+        let liked = false;
+        
+        // Add or remove like on click
+        likeIcon.addEventListener("click", () => {
+            if (!liked) {
+                media.likes++;
+                numberLikes.classList.add("liked");
+            } else if (liked) {
+                media.likes--;
+                numberLikes.classList.remove("liked");
+            }
+
+            liked = !liked;
+            mediaLikes.textContent = media.likes;
+
+            // Update the total number of likes
+            photographerLikes(mediasFilteredByPhotographer);
+        });
+      }
+
     return photographerMediasContent;
 }
 
-// Display medias
+// Display medias data
 function displayMedias(media, photographerName) {
     const photographerMediasContainer = document.querySelector(".photographer_medias");
+
+    media.sort(function (a, b) {
+        if (a.likes < b.likes) {
+            return 1;
+          }
+          if (a.likes > b.likes) {
+            return -1;
+          }
+          return 0;
+    });
 
     media.forEach(mediaItem => {
         const mediaModel = mediasFactory(mediaItem, photographerName);
@@ -133,7 +167,7 @@ function displayMedias(media, photographerName) {
     photographerLikes(media);
 }
 
-// Display data
+// Display photographer data
 function displayData(photographers) {
     const photographerHeader = document.querySelector(".photograph-header");
 
@@ -208,8 +242,6 @@ filter.addEventListener("change", (event) => {
 
     mediasFilter(selectedFilter);
 })
-
-
 
 // Init
 async function init() {
