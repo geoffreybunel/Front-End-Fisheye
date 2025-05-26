@@ -101,6 +101,12 @@ function mediasFactory(media, photographerName) {
                 </div>     
             </div>
         `;
+
+        const mediaElement = photographerMediasContent.querySelector("img");
+
+        mediaElement.addEventListener("click", function() {
+            displayLightbox();
+        });
     } else if (video) {
         photographerMediasContent.innerHTML =`
             <video width="350" height="300">
@@ -112,9 +118,15 @@ function mediasFactory(media, photographerName) {
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
                     <i class="fas fa-heart like_icon"></i>
-                </div>     
+                </div>
             </div>
         `;
+
+        const mediaElement = photographerMediasContent.querySelector("video");
+
+        mediaElement.addEventListener("click", function() {
+            displayLightbox();
+        });
     }
 
     const numberLikes = photographerMediasContent.querySelector(".nb_likes");

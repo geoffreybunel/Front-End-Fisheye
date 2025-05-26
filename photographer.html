@@ -16,10 +16,12 @@
     </header>
 
     <main id="main">
+    <!-- Header -->
       <section class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </section>
 
+    <!-- Filters -->
       <section class="filter__container">
         <label for="filter" class="filter__label">Trier par</label>
         <select name="filter" id="filter" class="filter">
@@ -29,8 +31,10 @@
         </select>
       </section>
 
+    <!-- Medias -->
       <section class="photographer_medias"></section>
 
+    <!-- Total likes + prices -->
       <div class="tarifs__container">
         <div>
           <p class="like_counter"></p>
@@ -41,13 +45,14 @@
       </div>
     </main>
 
+    <!-- Contact Modal -->
     <div class="contact_modal" role=”dialog” aria-describedby="modalTitle">
 			<div class="modal">
 				<header>
           <div class="modal_header_title">
             <h2 class="modal_title">Contactez-moi</h2>
           </div>
-          <img src="assets/icons/close.svg" class="modal_close_button" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" id="modal_close_button" onclick="closeModal()" />
         </header>
 				<form id="form">
 					<div>
@@ -70,6 +75,26 @@
 				</form>
 			</div>
 		</div>
+
+    <!-- Lightbox -->
+    <div class="lightbox__container" role=”dialog” aria-describedby="modalTitle">
+			<div class="lightbox__modal">
+        <i class="fa-sharp fa-solid fa-angle-left lightbox__prev"></i>
+
+        <div>
+          <article class="lightbox__medias">
+            <img src="https://picsum.photos/1000/900" alt="">
+          </article>
+
+          <h3 class="lightbox__medias__title">test</h3>
+        </div>
+
+        <i class="fa-sharp fa-solid fa-angle-right lightbox__next"></i>
+
+        <img src="assets/icons/close_lightbox.svg" class="modal_close_button" onclick="closeLightbox()" />
+			</div>
+		</div>
+
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
     <script src="/scripts/utils/lightbox.js"></script>
