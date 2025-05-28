@@ -104,9 +104,11 @@ function mediasFactory(media, photographerName) {
 
         const mediaElement = photographerMediasContent.querySelector("img");
 
+        // Display lightbox
         mediaElement.addEventListener("click", function() {
-            displayLightbox();
+            displayLightbox(media, photographerName, mediasFilteredByPhotographer);
         });
+        
     } else if (video) {
         photographerMediasContent.innerHTML =`
             <video width="350" height="300">
@@ -125,7 +127,7 @@ function mediasFactory(media, photographerName) {
         const mediaElement = photographerMediasContent.querySelector("video");
 
         mediaElement.addEventListener("click", function() {
-            displayLightbox();
+            displayLightbox(media, photographerName, mediasFilteredByPhotographer);
         });
     }
 
