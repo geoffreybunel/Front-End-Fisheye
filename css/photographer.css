@@ -239,14 +239,14 @@ form input {
 /* Lightbox Modal */
 .lightbox__container {
     display: none;
-    /* position: fixed;
+    position: fixed;
     z-index: 1;
     left: 0;
-    top: 0; */
+    top: 0;
     height: 100%;
     width: 100%;
     overflow: auto; 
-    background-color: grey;
+    background-color: #fff;
 }
 
 .lightbox__modal {
@@ -255,11 +255,11 @@ form input {
     width: 90%;
     height: 1000px;
     border-radius: 5px;
-    background-color: black;
+    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    overflow: hidden;
+    overflow: auto;
     position: relative;
 }
 

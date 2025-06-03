@@ -163,16 +163,6 @@ function mediasFactory(media, photographerName) {
 function displayMedias(media, photographerName) {
     const photographerMediasContainer = document.querySelector(".photographer_medias");
 
-    media.sort(function (a, b) {
-        if (a.likes < b.likes) {
-            return 1;
-          }
-          if (a.likes > b.likes) {
-            return -1;
-          }
-          return 0;
-    });
-
     media.forEach(mediaItem => {
         const mediaModel = mediasFactory(mediaItem, photographerName);
         photographerMediasContainer.append(mediaModel);
@@ -202,6 +192,16 @@ function displayData(photographers) {
 
     modalHeader.append(photographerName);
 }
+
+// Event for when we change the filter, we call the mediasFilter function
+const filter = document.getElementById("filter");
+filter.addEventListener("change", (event) => {
+    let selectedFilter = event.target.value;
+
+    window.selectedFilter = selectedFilter;
+
+    mediasFilter(selectedFilter);
+})
 
 // Filter the medias by Title, Date or Popularity
 function mediasFilter(selectedFilter) {
@@ -249,14 +249,6 @@ function mediasFilter(selectedFilter) {
     return sortedMedias;
 }
 
-// Event for when we change the filter, we call the mediasFilter function
-const filter = document.getElementById("filter");
-filter.addEventListener("change", (event) => {
-    const selectedFilter = event.target.value;
-
-    mediasFilter(selectedFilter);
-})
-
 // Init
 async function init() {
     // Get data from photographers
@@ -265,6 +257,8 @@ async function init() {
 
     const photographer = photographers.find(p => p.id === photographerId);
     photographerName = photographer.name;
+
+    window.selectedFilter = "Date";
 
     displayData(photographers);
 

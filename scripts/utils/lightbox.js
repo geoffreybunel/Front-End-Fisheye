@@ -5,7 +5,6 @@ const lightboxModalCloseButton = document.querySelector(".modal_close_button");
 const mediaContainer = document.querySelector(".lightbox__medias");
 const leftArrow = document.querySelector(".fa-angle-left");
 const rightArrow = document.querySelector(".fa-angle-right");
-const mediaTitle = document.querySelector(".lightbox__medias__title");
 
 let lightboxMedias = [];
 let currentMediaIndex = 0;
@@ -17,6 +16,9 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
     lightboxContainer.setAttribute("aria-hidden", "false");
 
     main.setAttribute("aria-hidden", "true");
+
+    console.log("Filtre actuel utilisé dans la lightbox :", window.selectedFilter);
+
 
     mediaContainer.innerHTML = ``;
 
@@ -41,11 +43,49 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
     }
     console.log("mediaElement :", mediaElement);
     
+    const mediaTitle = document.createElement("h3");
+    mediaTitle.innerHTML = `${media.title}`;
+
     mediaContainer.appendChild(mediaElement);
-    mediaTitle.textContent = media.title;
+    mediaContainer.appendChild(mediaTitle);
 
     lightboxMedias = mediasFilteredByPhotographer;
     currentMediaIndex = lightboxMedias.findIndex((m) => m.title === media.title);
+
+    // Sort the medias in the lightbox depending on the current filter
+    if (window.selectedFilter === "Titre") {
+        lightboxMedias.sort(function (a, b) {
+            if (a.title < b.title) {
+                return -1;
+              }
+              if (a.title > b.title) {
+                return 1;
+              }
+              return 0;
+        });
+
+    } else if (window.selectedFilter === "Date") {
+        lightboxMedias.sort(function (a, b) {
+            if (a.date < b.date) {
+                return -1;
+              }
+              if (a.date > b.date) {
+                return 1;
+              }
+              return 0;
+        });
+
+    } else if (window.selectedFilter === "Popularité") {
+        lightboxMedias.sort(function (a, b) {
+            if (a.likes < b.likes) {
+                return 1;
+              }
+              if (a.likes > b.likes) {
+                return -1;
+              }
+              return 0;
+        });
+    }
 
     console.log("Index actuel :", currentMediaIndex);
     console.log("Tableau lightboxMedias :", lightboxMedias);
