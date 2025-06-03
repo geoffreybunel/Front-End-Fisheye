@@ -141,3 +141,18 @@ function prevMedia() {
     console.log("Media sélectionné :", currentMedia);
     displayLightbox(currentMedia, photographerName, mediasFilteredByPhotographer);
 };
+
+// Keyboard Detection
+document.addEventListener("keydown", (e) => {
+    const isLightboxOpen = lightboxContainer.style.display === "block";
+
+    if (!isLightboxOpen) return;
+
+    if (e.key === "ArrowRight") {
+        nextMedia();
+    } else if (e.key === "ArrowLeft") {
+        prevMedia();
+    } else if (e.key === "Escape") {
+        closeLightbox();
+    }
+})
