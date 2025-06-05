@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function photographerTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
@@ -22,5 +23,7 @@ function photographerTemplate(data) {
         article.innerHTML = articleContent;
         return (article);
     }
+
+    // console.log("photographerTemplate chargé");
     return { name, picture, getUserCardDOM }
 }

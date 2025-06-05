@@ -1,3 +1,5 @@
+/* global photographerTemplate */
+
 async function getPhotographers() {
     // Get data from Json file
     try {

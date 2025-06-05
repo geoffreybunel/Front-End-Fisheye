@@ -267,10 +267,9 @@ form input {
     position: relative;
 }
 
-.lightbox__modal i {
+.lightbox__modal span {
     color: #901C1C;
     font-size: 52px;
-    border-radius: none;
     padding: 0 20px;
 }
 
@@ -296,10 +295,4 @@ form input {
     object-fit: cover;
     width: 1000px;
     height: 900px;
-}
-
-.lightbox__prev, .lightbox__next {
-    font-size: 36px;
-    color: #901C1C;
-    cursor: pointer;
 }

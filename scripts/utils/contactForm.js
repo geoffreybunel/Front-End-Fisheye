@@ -1,11 +1,10 @@
 // Global DOM
 const main = document.getElementById("main");
 const modalContainer = document.querySelector(".contact_modal");
-const modal = document.querySelector(".modal");
 const modalOpenButton = document.querySelector(".contact_button");
-const modalCloseButton = document.getElementById("modal_close_button");
 const form = document.getElementById("form");
 
+// eslint-disable-next-line no-unused-vars
 function displayModal() {
 	modalContainer.style.display = "block";
 

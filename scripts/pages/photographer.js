@@ -1,3 +1,5 @@
+/* global displayLightbox */
+
 let mediasFilteredByPhotographer;
 let photographerName = "";
 
