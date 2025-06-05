@@ -195,6 +195,10 @@
     cursor: pointer;
 }
 
+.modal_close_button {
+    cursor: pointer;
+}
+
 .submit_button {
     font-size: 20px;
     font-weight: bold;
@@ -264,14 +268,14 @@ form input {
 }
 
 .lightbox__modal i {
-    color: red;
+    color: #901C1C;
     font-size: 52px;
     border-radius: none;
     padding: 0 20px;
 }
 
 .lightbox__modal h3 {
-    color: red;
+    color: #901C1C;
     margin-bottom: 0;
 }
 
@@ -279,7 +283,7 @@ form input {
     position: absolute;
     top: 40px;
     right: 40px;
-    color: red;
+    color: #901C1C;
 }
 
 .lightbox__medias {
@@ -292,4 +296,10 @@ form input {
     object-fit: cover;
     width: 1000px;
     height: 900px;
+}
+
+.lightbox__prev, .lightbox__next {
+    font-size: 36px;
+    color: #901C1C;
+    cursor: pointer;
 }

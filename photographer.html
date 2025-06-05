@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -9,22 +9,22 @@
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" />
+    <header role="banner">
+      <a href="index.html" tabindex="0">
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye logo"/>
       </a>
     </header>
 
-    <main id="main">
+    <main id="main" role="main">
     <!-- Header -->
       <section class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()" tabindex="1">Contactez-moi</button>
       </section>
 
     <!-- Filters -->
       <section class="filter__container">
         <label for="filter" class="filter__label">Trier par</label>
-        <select name="filter" id="filter" class="filter">
+        <select name="filter" id="filter" class="filter" tabindex="2">
           <option value="Date">Date</option>
           <option value="Popularité">Popularité</option>
           <option value="Titre">Titre</option>
@@ -37,7 +37,7 @@
     <!-- Total likes + prices -->
       <div class="tarifs__container">
         <div>
-          <p class="like_counter"></p>
+          <p class="like_counter" aria-live="polite"></p>
         </div>
         <div>
           <p class="tarifs"></p>
@@ -46,13 +46,14 @@
     </main>
 
     <!-- Contact Modal -->
-    <div class="contact_modal" role=”dialog” aria-describedby="modalTitle">
+    <div class="contact_modal" role=”dialog” aria-modal="true" aria-hidden="true" aria-labelledby="modal_title">
 			<div class="modal">
 				<header>
           <div class="modal_header_title">
+            <h2 id="modal_title" class="sr-only">Contacter le photographe</h2>
             <h2 class="modal_title">Contactez-moi</h2>
           </div>
-          <img src="assets/icons/close.svg" id="modal_close_button" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" id="modal_close_button" onclick="closeModal()" alt="Modal - Close button"/>
         </header>
 				<form id="form">
 					<div>
@@ -69,23 +70,24 @@
 					</div>
           <div>
 						<label for="message">Votre message</label>
-						<textarea id="message" name="message" rows="10" cols="85"></textarea>
+						<textarea id="message" name="message" rows="10" cols="76"></textarea>
 					</div>
-          <button class="submit_button" type="submit" form="form" value="Submit">Envoyer</button>
+          <button class="submit_button" type="submit" form="form" value="Submit" role="button">Envoyer</button>
 				</form>
 			</div>
 		</div>
 
     <!-- Lightbox -->
-    <div class="lightbox__container" role=”dialog” aria-describedby="modalTitle">
+    <div class="lightbox__container" role=”dialog” aria-modal="true" aria-hidden="true" aria-labelledby="lightbox-title">
+      <h2 id="lightbox-title" class="sr-only">Visualisation du média</h2>
 			<div class="lightbox__modal">
-        <i class="fa-sharp fa-solid fa-angle-left lightbox__prev"></i>
+        <span class="fa-sharp fa-solid fa-angle-left lightbox__prev" aria-label="Média précédent"></span>
 
         <div class="lightbox__medias"></div>
 
-        <i class="fa-sharp fa-solid fa-angle-right lightbox__next"></i>
+        <span class="fa-sharp fa-solid fa-angle-right lightbox__next" aria-label="Média suivant"></span>
 
-        <img src="assets/icons/close_lightbox.svg" class="modal_close_button" onclick="closeLightbox()" />
+        <img src="assets/icons/close_lightbox.svg" alt="Lightbox - Close button" class="modal_close_button" aria-label="Fermer la lightbox" onclick="closeLightbox()" />
 			</div>
 		</div>
 

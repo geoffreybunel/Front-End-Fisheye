@@ -9,7 +9,7 @@ const form = document.getElementById("form");
 function displayModal() {
 	modalContainer.style.display = "block";
 
-    main.setAttribute("aria-hidden", "true");
+    main.setAttribute("inert", "");
 
     modalContainer.setAttribute("aria-hidden", "false");
 
@@ -21,7 +21,7 @@ function closeModal() {
     modalContainer.style.display = "none";
     modalContainer.setAttribute("aria-hidden", "true");
 
-    main.setAttribute("aria-hidden", "false");
+    main.removeAttribute("inert");
 
     modalOpenButton.focus();
 }
@@ -43,3 +43,14 @@ form.addEventListener("submit", function(event) {
     closeModal();
     form.reset();
   })
+
+// Keyboard Detection
+document.addEventListener("keydown", (e) => {
+    const isModalContainerOpen = modalContainer.style.display === "block";
+
+    if (!isModalContainerOpen) return;
+
+    if (e.key === "Escape") {
+        closeModal();
+    }
+})

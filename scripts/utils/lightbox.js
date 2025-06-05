@@ -15,7 +15,7 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
 	lightboxContainer.style.display = "block";
     lightboxContainer.setAttribute("aria-hidden", "false");
 
-    main.setAttribute("aria-hidden", "true");
+    main.setAttribute("inert", "");
 
     console.log("Filtre actuel utilisé dans la lightbox :", window.selectedFilter);
 
@@ -98,7 +98,7 @@ function closeLightbox() {
     lightboxContainer.style.display = "none";
     lightboxContainer.setAttribute("aria-hidden", "true");
 
-    main.setAttribute("aria-hidden", "false");
+    main.removeAttribute("inert");
 }
 
 // Arrows Management \\

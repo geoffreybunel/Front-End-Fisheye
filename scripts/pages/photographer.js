@@ -59,7 +59,7 @@ function photographerLikes(media) {
       })
 
     const photographerLikesContainer = document.querySelector(".like_counter");
-    photographerLikesContainer.innerHTML = `${sumLikes} <i class="fas fa-heart"></i>`;
+    photographerLikesContainer.innerHTML = `${sumLikes} <span class="fas fa-heart" aria-hidden="true"></span>`;
 
     return sumLikes;
 }
@@ -89,15 +89,16 @@ function modalPhotographerName(dataPhotographer) {
 function mediasFactory(media, photographerName) {
     const { title, image, video, likes } = media;
     const photographerMediasContent = document.createElement("article");
+    // photographerMediasContent.tabIndex = "3";
 
     if (image) {
         photographerMediasContent.innerHTML = `
-            <img src="../../assets/photographers/${photographerName}/${image}" alt="${title}">
+            <img src="../../assets/photographers/${photographerName}/${image}" alt="${title}" tabindex="3" role="button" aria-label="Voir le média en grand">
             <div class="medias__infos">
                 <p>${title}</p>
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
-                    <i class="fas fa-heart like_icon"></i>
+                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="Liker ce média" aria-pressed="false"></span>
                 </div>     
             </div>
         `;
@@ -108,10 +109,16 @@ function mediasFactory(media, photographerName) {
         mediaElement.addEventListener("click", function() {
             displayLightbox(media, photographerName, mediasFilteredByPhotographer);
         });
+
+        mediaElement.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                displayLightbox(media, photographerName, mediasFilteredByPhotographer);
+            }
+        })
         
     } else if (video) {
         photographerMediasContent.innerHTML =`
-            <video width="350" height="300">
+            <video width="350" height="300" tabindex="3"  role="button" aria-label="Voir le média en grand">
                 <source src="../../assets/photographers/${photographerName}/${video}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -119,7 +126,7 @@ function mediasFactory(media, photographerName) {
                 <p>${title}</p>
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
-                    <i class="fas fa-heart like_icon"></i>
+                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="Liker ce média" aria-pressed="false"></span>
                 </div>
             </div>
         `;
@@ -129,6 +136,12 @@ function mediasFactory(media, photographerName) {
         mediaElement.addEventListener("click", function() {
             displayLightbox(media, photographerName, mediasFilteredByPhotographer);
         });
+
+        mediaElement.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                displayLightbox(media, photographerName, mediasFilteredByPhotographer);
+            }
+        })
     }
 
     const numberLikes = photographerMediasContent.querySelector(".nb_likes");
@@ -137,15 +150,17 @@ function mediasFactory(media, photographerName) {
 
     if (likeIcon && numberLikes) {
         let liked = false;
-        
+        // likeIcon.setAttribute("aria-hidden", "false");
         // Add or remove like on click
         likeIcon.addEventListener("click", () => {
             if (!liked) {
                 media.likes++;
                 numberLikes.classList.add("liked");
+                likeIcon.setAttribute("aria-pressed", "true");
             } else if (liked) {
                 media.likes--;
                 numberLikes.classList.remove("liked");
+                likeIcon.setAttribute("aria-pressed", "false");
             }
 
             liked = !liked;
@@ -154,7 +169,26 @@ function mediasFactory(media, photographerName) {
             // Update the total number of likes
             photographerLikes(mediasFilteredByPhotographer);
         });
-      }
+
+        // Add or remove like on click WITH keyboard
+        likeIcon.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                if (!liked) {
+                    media.likes++;
+                    numberLikes.classList.add("liked");
+                } else if (liked) {
+                    media.likes--;
+                    numberLikes.classList.remove("liked");
+                }
+    
+                liked = !liked;
+                mediaLikes.textContent = media.likes;
+    
+                // Update the total number of likes
+                photographerLikes(mediasFilteredByPhotographer);
+            }
+        })
+    }
 
     return photographerMediasContent;
 }
