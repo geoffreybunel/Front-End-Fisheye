@@ -61,7 +61,7 @@ function photographerLikes(media) {
       })
 
     const photographerLikesContainer = document.querySelector(".like_counter");
-    photographerLikesContainer.innerHTML = `${sumLikes} <span class="fas fa-heart" aria-hidden="true"></span>`;
+    photographerLikesContainer.innerHTML = `${sumLikes} <span class="fas fa-heart" aria-hidden="true" aria-label="Nombre total de likes"></span>`;
 
     return sumLikes;
 }
@@ -100,7 +100,7 @@ function mediasFactory(media, photographerName) {
                 <p>${title}</p>
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
-                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="Liker ce média" aria-pressed="false"></span>
+                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="likes" aria-pressed="false"></span>
                 </div>     
             </div>
         `;
@@ -128,7 +128,7 @@ function mediasFactory(media, photographerName) {
                 <p>${title}</p>
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
-                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="Liker ce média" aria-pressed="false"></span>
+                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="likes" aria-pressed="false"></span>
                 </div>
             </div>
         `;

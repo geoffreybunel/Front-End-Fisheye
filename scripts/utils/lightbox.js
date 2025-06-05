@@ -3,10 +3,10 @@
 
 // Global DOM \\
 const lightboxContainer = document.querySelector(".lightbox__container");
+const lightboxModal = document.querySelector(".lightbox__modal");
 const mediaContainer = document.querySelector(".lightbox__medias");
 const leftArrow = document.querySelector(".fa-angle-left");
 const rightArrow = document.querySelector(".fa-angle-right");
-const main = document.getElementById("main");
 
 let lightboxMedias = [];
 let currentMediaIndex = 0;
@@ -21,6 +21,7 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
 
     console.log("Filtre actuel utilisé dans la lightbox :", window.selectedFilter);
 
+    lightboxModal.setAttribute("aria-label", "image closeup view");
 
     mediaContainer.innerHTML = ``;
 
