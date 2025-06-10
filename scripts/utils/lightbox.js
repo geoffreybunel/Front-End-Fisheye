@@ -2,11 +2,13 @@
 /* global mediasFilteredByPhotographer */
 
 // Global DOM \\
+const main = document.getElementById("main");
 const lightboxContainer = document.querySelector(".lightbox__container");
 const lightboxModal = document.querySelector(".lightbox__modal");
 const mediaContainer = document.querySelector(".lightbox__medias");
 const leftArrow = document.querySelector(".fa-angle-left");
 const rightArrow = document.querySelector(".fa-angle-right");
+
 
 let lightboxMedias = [];
 let currentMediaIndex = 0;
@@ -19,6 +21,7 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
 
     main.setAttribute("inert", "");
 
+    // console.log(main)
     console.log("Filtre actuel utilisé dans la lightbox :", window.selectedFilter);
 
     lightboxModal.setAttribute("aria-label", "image closeup view");

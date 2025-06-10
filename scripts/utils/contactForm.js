@@ -1,8 +1,8 @@
 // Global DOM
-const main = document.getElementById("main");
 const modalContainer = document.querySelector(".contact_modal");
 const modalOpenButton = document.querySelector(".contact_button");
 const form = document.getElementById("form");
+// const main = document.getElementById("main");
 
 // eslint-disable-next-line no-unused-vars
 function displayModal() {

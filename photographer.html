@@ -10,7 +10,7 @@
   </head>
   <body>
     <header role="banner">
-      <a href="index.html" tabindex="0">
+      <a href="index.html" tabindex="0" aria-label="Lien vers la page d'accueil">
         <img src="assets/images/logo.png" class="logo" alt="Fisheye logo"/>
       </a>
     </header>
@@ -18,7 +18,7 @@
     <main id="main" role="main">
     <!-- Header -->
       <section class="photograph-header">
-        <button class="contact_button" onclick="displayModal()" tabindex="1">Contactez-moi</button>
+        <button class="contact_button" role="button" onclick="displayModal()" tabindex="1">Contactez-moi</button>
       </section>
 
     <!-- Filters -->
@@ -40,20 +40,23 @@
           <p class="like_counter" aria-live="polite" aria-label="Nombre total de likes"></p>
         </div>
         <div>
-          <p class="tarifs"></p>
+          <p class="tarifs" aria-label="Tarif journalier du photographe"></p>
         </div>
       </div>
     </main>
 
     <!-- Contact Modal -->
-    <div class="contact_modal" role=”dialog” aria-modal="true" aria-hidden="true" aria-labelledby="modal_title">
+    <div class="contact_modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal_title">
 			<div class="modal">
 				<header>
           <div class="modal_header_title">
             <h2 id="modal_title" class="sr-only">Contacter le photographe</h2>
             <h2 class="modal_title">Contactez-moi</h2>
           </div>
-          <img src="assets/icons/close.svg" id="modal_close_button" onclick="closeModal()" alt="Modal - Close button"/>
+
+          <button class="button" onclick="closeModal()">
+            <img src="assets/icons/close.svg" id="modal_close_button" alt="Fermer la modal de contact"/>
+          </button>
         </header>
 				<form id="form">
 					<div>
@@ -78,21 +81,28 @@
 		</div>
 
     <!-- Lightbox -->
-    <div class="lightbox__container" role=”dialog” aria-modal="true" aria-hidden="true" aria-labelledby="lightbox-title">
+    <div class="lightbox__container" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightbox-title">
       <h2 id="lightbox-title" class="sr-only">Visualisation du média</h2>
 			<div class="lightbox__modal">
-        <span class="fa-sharp fa-solid fa-angle-left lightbox__prev" aria-label="Média précédent"></span>
+        <button class="button" aria-label="Média précédent" onclick="prevMedia()">
+          <span class="fa-sharp fa-solid fa-angle-left lightbox__prev"></span>
+        </button>  
 
-        <div class="lightbox__medias"></div>
+      <div class="lightbox__medias"></div>    
 
-        <span class="fa-sharp fa-solid fa-angle-right lightbox__next" aria-label="Média suivant"></span>
+        <button class="button" aria-label="Média suivant" onclick="nextMedia()">
+          <span class="fa-sharp fa-solid fa-angle-right lightbox__next"></span>
+        </button>
 
-        <img src="assets/icons/close_lightbox.svg" alt="Lightbox - Close button" class="modal_close_button" aria-label="Fermer la lightbox" onclick="closeLightbox()" />
+        <button class="modal_close_button button" onclick="closeLightbox()">
+          <img src="assets/icons/close_lightbox.svg" alt="Fermer la lightbox" />
+        </button>
 			</div>
 		</div>
 
+    <script src="/scripts/utils/lightbox.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/utils/lightbox.js"></script>
+
   </body>
 </html>

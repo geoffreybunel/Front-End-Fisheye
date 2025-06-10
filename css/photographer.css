@@ -195,8 +195,10 @@
     cursor: pointer;
 }
 
-.modal_close_button {
+.button {
     cursor: pointer;
+    border: none;
+    background: none;
 }
 
 .submit_button {
