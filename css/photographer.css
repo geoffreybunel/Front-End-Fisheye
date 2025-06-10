@@ -54,6 +54,7 @@
 .filter__container {
     margin: 50px 100px;
     display: flex;
+    align-items: center;
 }
 
 .filter__label {
@@ -113,6 +114,26 @@
     color: #901C1C;
     font-size: 24px;
     height: 50px;
+}
+
+.medias__infos p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.2; */
+}
+
+.nb_likes {
+    display: flex;
+    align-items: center;
+}
+
+.media_likes {
+    margin: 0 5px 0 0;
+    white-space: nowrap;
 }
 
 .liked {
