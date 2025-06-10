@@ -95,12 +95,12 @@ function mediasFactory(media, photographerName) {
 
     if (image) {
         photographerMediasContent.innerHTML = `
-            <img src="../../assets/photographers/${photographerName}/${image}" alt="${title}" tabindex="3" role="button" aria-label="Voir le média en grand">
+            <img src="../../assets/photographers/${photographerName}/${image}" alt="${title}" tabindex="3" role="button" aria-label="${title}, voir l'image en grand">
             <div class="medias__infos">
                 <p>${title}</p>
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
-                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="likes" aria-pressed="false"></span>
+                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="${likes} likes" aria-pressed="false" aria-live="polite"></span>
                 </div>     
             </div>
         `;
@@ -120,7 +120,7 @@ function mediasFactory(media, photographerName) {
         
     } else if (video) {
         photographerMediasContent.innerHTML =`
-            <video width="350" height="300" tabindex="3"  role="button" aria-label="Voir le média en grand">
+            <video width="350" height="300" tabindex="3" role="button" aria-label="${title}, voir la vidéo en grand">
                 <source src="../../assets/photographers/${photographerName}/${video}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -128,7 +128,7 @@ function mediasFactory(media, photographerName) {
                 <p>${title}</p>
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
-                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="likes" aria-pressed="false"></span>
+                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="${likes} likes" aria-pressed="false" aria-live="polite"></span>
                 </div>
             </div>
         `;

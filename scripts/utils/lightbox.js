@@ -20,7 +20,8 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
     lightboxContainer.setAttribute("aria-hidden", "false");
 
     main.setAttribute("inert", "");
-
+    leftArrow.focus()
+    
     // console.log(main)
     console.log("Filtre actuel utilisé dans la lightbox :", window.selectedFilter);
 
