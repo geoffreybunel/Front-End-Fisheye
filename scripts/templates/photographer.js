@@ -11,8 +11,8 @@ function photographerTemplate(data) {
 
         // Cards's HTML code
         const articleContent = `
-            <a href="../../photographer.html?id=${id}" aria-label="Lien vers la page de ${name}">
-                <img src="${picture}" alt="${name}" aria-label="Voir la page de ${name}">
+            <a href="../../photographer.html?id=${id}" aria-label="Lien vers la page de ${name}, ${city}, ${country}, ${price}€/jour">
+                <img src="${picture}" alt="${name}">
                 <h2>${name}</h2>
             </a>
             <p class="cards__localisation">${city}, ${country}</p>

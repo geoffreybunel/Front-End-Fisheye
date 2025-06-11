@@ -16,14 +16,14 @@
     </header>
 
     <main id="main" role="main">
-    <!-- Header -->
+    <!-- Photographer Header -->
       <section class="photograph-header">
-        <button class="contact_button" role="button" onclick="displayModal()" tabindex="1">Contactez-moi</button>
+        <button class="contact_button" role="button" onclick="displayModal()" tabindex="1" aria-haspopup="dialog">Contactez-moi</button>
       </section>
 
     <!-- Filters -->
       <section class="filter__container">
-        <label for="filter" class="filter__label">Trier par</label>
+        <label for="filter" class="filter__label">Trier les médias par :</label>
         <select name="filter" id="filter" class="filter" tabindex="2">
           <option value="Date">Date</option>
           <option value="Popularité">Popularité</option>
@@ -54,7 +54,7 @@
             <h2 class="modal_title">Contactez-moi</h2>
           </div>
 
-          <button class="button" onclick="closeModal()">
+          <button class="button" aria-label="Fermer la modal de contact" onclick="closeModal()">
             <img src="assets/icons/close.svg" id="modal_close_button" alt="Fermer la modal de contact"/>
           </button>
         </header>
@@ -94,7 +94,7 @@
           <span class="fa-sharp fa-solid fa-angle-right lightbox__next"></span>
         </button>
 
-        <button class="modal_close_button button" onclick="closeLightbox()">
+        <button class="modal_close_button button" aria-label="Fermer la lightbox" onclick="closeLightbox()">
           <img src="assets/icons/close_lightbox.svg" alt="Fermer la lightbox" />
         </button>
 			</div>

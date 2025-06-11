@@ -95,12 +95,14 @@ function mediasFactory(media, photographerName) {
 
     if (image) {
         photographerMediasContent.innerHTML = `
-            <img src="../../assets/photographers/${photographerName}/${image}" alt="${title}" tabindex="3" role="button" aria-label="${title}, voir l'image en grand">
+            <img src="../../assets/photographers/${photographerName}/${image}" alt="${title}, voir l'image en grand" tabindex="3" role="button">
             <div class="medias__infos">
                 <p>${title}</p>
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
-                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="${likes} likes" aria-pressed="false" aria-live="polite"></span>
+                    <button class="button like_icon btn_like" aria-label="Like - Aimer le média">
+                        <i class="fas fa-heart" tabindex="3" aria-hidden="false" role="button" aria-label="${likes} likes" aria-pressed="false" aria-live="polite"></i>
+                    </button>  
                 </div>     
             </div>
         `;
@@ -128,7 +130,9 @@ function mediasFactory(media, photographerName) {
                 <p>${title}</p>
                 <div class="nb_likes">
                     <span class="media_likes">${likes}</span>
-                    <span class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="${likes} likes" aria-pressed="false" aria-live="polite"></span>
+                    <button class="button like_icon btn_like" aria-label="Like - Aimer le média">
+                        <i class="fas fa-heart like_icon" tabindex="3" aria-hidden="false" role="button" aria-label="${likes} likes" aria-pressed="false" aria-live="polite"></i>
+                    </button>  
                 </div>
             </div>
         `;
@@ -158,10 +162,12 @@ function mediasFactory(media, photographerName) {
             if (!liked) {
                 media.likes++;
                 numberLikes.classList.add("liked");
+                likeIcon.classList.add("liked");
                 likeIcon.setAttribute("aria-pressed", "true");
             } else if (liked) {
                 media.likes--;
                 numberLikes.classList.remove("liked");
+                likeIcon.classList.remove("liked");
                 likeIcon.setAttribute("aria-pressed", "false");
             }
 

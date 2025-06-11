@@ -82,7 +82,7 @@
     justify-items: center;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 50px;
-    margin: 0 100px;
+    margin: 0 100px 20px;
 }
 
 .photographer_medias article {
@@ -136,9 +136,16 @@
     white-space: nowrap;
 }
 
+.btn_like {
+    font-size: 24px;
+    color: #901C1C;
+}
+
 .liked {
     color : #D3573C;
 }
+
+
 
 /* Tarifs */
 .tarifs__container {
@@ -277,10 +284,10 @@ form input {
 }
 
 .lightbox__modal {
-    padding: 35px;
-    margin: 5% auto;
+    /* padding: 35px; */
+    margin: 20px auto;
     width: 90%;
-    height: 1000px;
+    height: 90%;
     border-radius: 5px;
     background-color: #fff;
     display: flex;
@@ -310,12 +317,12 @@ form input {
 
 .lightbox__medias {
     background-color: #fff;
-    width: 1000px;
-    height: 900px;
+    width: 700px;
+    height: 600px;
 }
 
 .lightbox__medias__img {
     object-fit: cover;
-    width: 1000px;
-    height: 900px;
+    width: 100%;
+    height: 100%;
 }

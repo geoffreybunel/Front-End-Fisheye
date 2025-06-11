@@ -42,8 +42,8 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
     } else if (media.video) {
         mediaElement = document.createElement("video");
         mediaElement.controls = true;
-        mediaElement.width = "1000";
-        mediaElement.height = "900";
+        mediaElement.width = "700";
+        mediaElement.height = "600";
 
         const source = document.createElement("source");
         source.src = `../../assets/photographers/${photographerName}/${media.video}`;
