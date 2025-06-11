@@ -1,4 +1,5 @@
 // Global DOM
+// const main = document.getElementById("main");
 const modalContainer = document.querySelector(".contact_modal");
 const modalOpenButton = document.querySelector(".contact_button");
 const form = document.getElementById("form");
@@ -6,9 +7,10 @@ const form = document.getElementById("form");
 function displayModal() {
 	modalContainer.style.display = "block";
 
-    main.setAttribute("inert", "");
-
     modalContainer.setAttribute("aria-hidden", "false");
+
+    header.setAttribute("inert", "");
+    main.setAttribute("inert", "");
 
     const firstNameInput = document.querySelector("#fname");
     firstNameInput.focus();
@@ -18,6 +20,7 @@ function closeModal() {
     modalContainer.style.display = "none";
     modalContainer.setAttribute("aria-hidden", "true");
 
+    header.removeAttribute("inert");
     main.removeAttribute("inert");
 
     modalOpenButton.focus();

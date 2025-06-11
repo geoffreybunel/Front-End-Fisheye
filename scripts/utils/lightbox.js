@@ -2,6 +2,7 @@
 /* global mediasFilteredByPhotographer */
 
 // Global DOM \\
+const header = document.getElementById("header");
 const main = document.getElementById("main");
 const lightboxContainer = document.querySelector(".lightbox__container");
 const lightboxModal = document.querySelector(".lightbox__modal");
@@ -19,9 +20,11 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
 	lightboxContainer.style.display = "block";
     lightboxContainer.setAttribute("aria-hidden", "false");
 
+    header.setAttribute("inert", "");
     main.setAttribute("inert", "");
-    leftArrow.focus()
-    
+
+    mediaContainer.focus();
+
     // console.log(main)
     console.log("Filtre actuel utilisé dans la lightbox :", window.selectedFilter);
 
@@ -105,7 +108,10 @@ function closeLightbox() {
     lightboxContainer.style.display = "none";
     lightboxContainer.setAttribute("aria-hidden", "true");
 
+    header.removeAttribute("inert");
     main.removeAttribute("inert");
+
+    main.focus();
 }
 
 // Arrows Management \\
