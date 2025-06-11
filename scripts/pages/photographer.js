@@ -184,9 +184,13 @@ function mediasFactory(media, photographerName) {
                 if (!liked) {
                     media.likes++;
                     numberLikes.classList.add("liked");
+                    likeIcon.classList.add("liked");
+                    likeIcon.setAttribute("aria-pressed", "true");
                 } else if (liked) {
                     media.likes--;
                     numberLikes.classList.remove("liked");
+                    likeIcon.classList.remove("liked");
+                    likeIcon.setAttribute("aria-pressed", "false");
                 }
     
                 liked = !liked;
