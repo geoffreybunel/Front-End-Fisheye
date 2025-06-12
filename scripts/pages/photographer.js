@@ -26,7 +26,7 @@ function getPhotographerId() {
     return parseInt(urlParams.get("id"));
 }
 
-// Get the photographer informations
+// Get the photographer informations for the header
 function photographerInfos(dataPhotographer) {
     const { name, city, country, tagline } = dataPhotographer;
 
@@ -77,7 +77,7 @@ function photographerTarifs(dataPhotographer) {
     return photographerTarifsContainer;
 }
 
-// Get the photographer name
+// Get the photographer name for the contact modal
 function modalPhotographerName(dataPhotographer) {
     const { name } = dataPhotographer;
 
@@ -109,7 +109,7 @@ function mediasFactory(media, photographerName) {
 
         const mediaElement = photographerMediasContent.querySelector("img");
 
-        // Display lightbox
+        // Display lightbox on click or enter
         mediaElement.addEventListener("click", function() {
             displayLightbox(media, photographerName, mediasFilteredByPhotographer);
         });
@@ -154,24 +154,34 @@ function mediasFactory(media, photographerName) {
     const mediaLikes = photographerMediasContent.querySelector(".media_likes");
     const likeIcon = photographerMediasContent.querySelector(".like_icon");
 
+    // Check if DOM elements exists
     if (likeIcon && numberLikes) {
         let liked = false;
         // likeIcon.setAttribute("aria-hidden", "false");
         // Add or remove like on click
         likeIcon.addEventListener("click", () => {
             if (!liked) {
+                // If not liked => Add 1 like
                 media.likes++;
                 numberLikes.classList.add("liked");
                 likeIcon.classList.add("liked");
+
+                // Accessibility : button is pressed
                 likeIcon.setAttribute("aria-pressed", "true");
             } else if (liked) {
+                // if liked => Remove 1 like
                 media.likes--;
                 numberLikes.classList.remove("liked");
                 likeIcon.classList.remove("liked");
+
+                // Accessibility : button is not pressed
                 likeIcon.setAttribute("aria-pressed", "false");
             }
 
+            // Change like state for next interaction
             liked = !liked;
+
+            // Update the media's number of likes
             mediaLikes.textContent = media.likes;
 
             // Update the total number of likes
@@ -185,15 +195,18 @@ function mediasFactory(media, photographerName) {
                     media.likes++;
                     numberLikes.classList.add("liked");
                     likeIcon.classList.add("liked");
+
                     likeIcon.setAttribute("aria-pressed", "true");
                 } else if (liked) {
                     media.likes--;
                     numberLikes.classList.remove("liked");
                     likeIcon.classList.remove("liked");
+
                     likeIcon.setAttribute("aria-pressed", "false");
                 }
     
                 liked = !liked;
+
                 mediaLikes.textContent = media.likes;
     
                 // Update the total number of likes
@@ -209,18 +222,21 @@ function mediasFactory(media, photographerName) {
 function displayMedias(media, photographerName) {
     const photographerMediasContainer = document.querySelector(".photographer_medias");
 
+    // For each media, display information from mediasFactory Function
     media.forEach(mediaItem => {
         const mediaModel = mediasFactory(mediaItem, photographerName);
         photographerMediasContainer.append(mediaModel);
     });
 
+    // Display the total number of likes
     photographerLikes(media);
 }
 
-// Display photographer data
+// Display photographer data for the header
 function displayData(photographers) {
     const photographerHeader = document.querySelector(".photograph-header");
 
+    // Set photographer ID in a const
     const photographerId = getPhotographerId();
     const photographer = photographers.find(photographer => photographer.id === photographerId);
 
@@ -251,6 +267,7 @@ filter.addEventListener("change", (event) => {
 
 // Filter the medias by Title, Date or Popularity
 function mediasFilter(selectedFilter) {
+    // Get medias filtered by photographers
     let sortedMedias = [...mediasFilteredByPhotographer];
 
     if (selectedFilter === "Titre") {
@@ -288,8 +305,10 @@ function mediasFilter(selectedFilter) {
     }
 
     const photographerMediasContainer = document.querySelector(".photographer_medias");
+    // Empty the medias section
     photographerMediasContainer.innerHTML = ``;
 
+    // Display the medias section with the filtered medias (popularity, title, date)
     displayMedias(sortedMedias, photographerName);
 
     return sortedMedias;
@@ -304,6 +323,7 @@ async function init() {
     const photographer = photographers.find(p => p.id === photographerId);
     photographerName = photographer.name;
 
+    // Set Date as the default filter
     window.selectedFilter = "Date";
 
     displayData(photographers);

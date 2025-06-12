@@ -1,7 +1,7 @@
 /* global photographerTemplate */
 
 async function getPhotographers() {
-    // Get data from Json file
+    // Import Json file
     try {
       const response = await fetch("../../data/photographers.json");
       if (!response.ok) {
@@ -19,6 +19,7 @@ async function getPhotographers() {
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
+    // For each photographer, display cardDOM from photographer.js (template)
     photographers.forEach((photographer) => {
         const photographerModel = photographerTemplate(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
@@ -27,7 +28,7 @@ async function displayData(photographers) {
 }
 
 async function init() {
-    // Get data from photographers
+    // Get photographers data from JSON files
     const { photographers } = await getPhotographers();
     displayData(photographers);
 }

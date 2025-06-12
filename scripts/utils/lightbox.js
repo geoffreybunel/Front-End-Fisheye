@@ -10,14 +10,16 @@ const mediaContainer = document.querySelector(".lightbox__medias");
 const leftArrow = document.querySelector(".fa-angle-left");
 const rightArrow = document.querySelector(".fa-angle-right");
 
-
 let lightboxMedias = [];
 let currentMediaIndex = 0;
 
 // Open Modal \\
 function displayLightbox(media, photographerName, mediasFilteredByPhotographer) {
     console.log("MEDIA reçu :", media);
+    // Display lightbox container
 	lightboxContainer.style.display = "block";
+
+    // Accessibility
     lightboxContainer.setAttribute("aria-hidden", "false");
 
     header.setAttribute("inert", "");
@@ -32,6 +34,7 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
 
     mediaContainer.innerHTML = ``;
 
+    // Set lightbox content if its an image or a video
     let mediaElement;
     if (media.image) {
         mediaElement = document.createElement("img");
@@ -53,13 +56,18 @@ function displayLightbox(media, photographerName, mediasFilteredByPhotographer) 
     }
     console.log("mediaElement :", mediaElement);
     
+    // Create the media's title
     const mediaTitle = document.createElement("h3");
     mediaTitle.innerHTML = `${media.title}`;
 
+    // Add the elements to the container
     mediaContainer.appendChild(mediaElement);
     mediaContainer.appendChild(mediaTitle);
 
+    // Add medias to the lightboxMedias Array
     lightboxMedias = mediasFilteredByPhotographer;
+
+    // Get the index
     currentMediaIndex = lightboxMedias.findIndex((m) => m.title === media.title);
 
     // Sort the medias in the lightbox depending on the current filter
@@ -115,7 +123,7 @@ function closeLightbox() {
 }
 
 // Arrows Management \\
-// right arrow
+// right arrow CLICK
 rightArrow.addEventListener("click", () => {
     nextMedia()
 });
@@ -135,7 +143,7 @@ function nextMedia() {
     displayLightbox(currentMedia, photographerName, mediasFilteredByPhotographer);
 };
 
-// left arrow
+// left arrow CLICK
 leftArrow.addEventListener("click", () => {
     prevMedia()
 });
@@ -159,6 +167,7 @@ function prevMedia() {
 document.addEventListener("keydown", (e) => {
     const isLightboxOpen = lightboxContainer.style.display === "block";
 
+    // If lightbox is not displayed, nothing happen
     if (!isLightboxOpen) return;
 
     if (e.key === "ArrowRight") {
