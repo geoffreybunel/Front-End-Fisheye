@@ -1,16 +1,44 @@
-# Base de code du projet P6 - Parcours Front-end
+# FishEye
 
-## Démarrer le projet
+FishEye is an accessible website for a photographers' platform.
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
+The goal of this project was to build a web application that follows accessibility best practices so that all users can interact with the interface.
+
+## Features
+
+- Photographer profiles
+- Media gallery
+- Accessible lightbox
+- Keyboard navigation
+- Screen reader compatibility
+
+## Tech Stack
+
+- HTML5
+- CSS3
+- JavaScript
+- Accessibility (ARIA, keyboard navigation)
+
+## Getting Started
+
+Clone the repository:
+
+git clone https://github.com/geoffreybunel/fisheye.git
+
+Open the `index.html` file in your browser.
+
+## Author
+
+Geoffrey  
+JavaScript / React Developer
 
 ## Linting du code avec ESLint
 
-Le projet utilise **[ESLint](https://eslint.org/)** pour garantir la qualité du code JavaScript.
+The project uses **[ESLint](https://eslint.org/)** to ensure the quality of JavaScript code.
 
-### 🔧 Installation des dépendances
+### 🔧 Installing dependencies
 
-Avant de pouvoir exécuter ESLint, installe les modules nécessaires (une seule fois) :
+Before you can run ESLint, install the necessary modules (only once):
 
 ```bash
 npm install
